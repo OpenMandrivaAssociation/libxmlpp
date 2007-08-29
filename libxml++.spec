@@ -1,9 +1,10 @@
-%define version 2.19.1
+%define version 2.19.2
 %define release %mkrel 1
 
 %define major 	2
 %define api_version 2.6
-%define libname %mklibname xml++ %{api_version}
+%define libname %mklibname xml++ %{api_version} %major
+%define libnamedev %mklibname -d xml++ %{api_version}
 
 Name: 		libxml++
 Summary: 	C++ interface for working with XML files
@@ -22,33 +23,29 @@ libxml++ is a C++ interface for working with XML files, using libxml
 (gnome-xml) to parse and write the actual XML files. It has a simple
 but complete API.
 
-%package	-n %{libname}_%{major}
+%package	-n %{libname}
 Summary: 	C++ interface for working with XML files
 Group:		System/Libraries
-Provides:	%{name} = %{version}-%{release}
-Provides:	%{libname} = %{version}-%{release}
 
-%description	-n %{libname}_%{major}
+%description	-n %{libname}
 libxml++ is a C++ interface for working with XML files, using libxml
 (gnome-xml) to parse and write the actual XML files. It has a simple
 but complete API.
 
-%package	-n %{libname}_%{major}-devel
+%package	-n %{libnamedev}
 Summary:	Headers for developing programs that will use %name
 Group:		Development/C++
-Provides:	%{libname}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Requires:	%{libname}_%{major} = %{version}
+Provides:	%{name}%{api_version}-devel = %{version}-%{release}
+Requires:	%{libname} = %{version}
+Obsoletes: %mklibname -d xml++ 2.6 2
 
-%description	-n %{libname}_%{major}-devel
+%description	-n %{libnamedev}
 This package contains the headers that programmers will need to develop
 applications which will use libraries from %name.
 
 %prep
 %setup -q
-aclocal
-autoconf
-automake -a -c
 
 %build
 %configure2_5x
@@ -68,14 +65,14 @@ mv %buildroot%_datadir/doc/libxml++-2.6/docs installed-docs
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n %{libname}_%{major} -p /sbin/ldconfig
-%postun -n %{libname}_%{major} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{libname}_%{major}
+%files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libxml++-%{api_version}.so.%{major}*
 
-%files -n %{libname}_%{major}-devel
+%files -n %{libnamedev}
 %defattr(-,root,root)
 %doc AUTHORS ChangeLog NEWS README installed-docs/*
 %{_includedir}/*
