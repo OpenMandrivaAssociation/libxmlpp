@@ -1,4 +1,4 @@
-%define version 2.19.2
+%define version 2.20.0
 %define release %mkrel 1
 
 %define major 	2
