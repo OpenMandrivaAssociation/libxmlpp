@@ -1,4 +1,4 @@
-%define version 2.23.2
+%define version 2.23.3
 %define release %mkrel 1
 
 %define major 	2
@@ -12,7 +12,7 @@ Version: 	%{version}
 Release: 	%{release}
 Source:		http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
 URL:		http://libxmlplusplus.sf.net/
-License:	LGPL
+License:	LGPLv2+
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/libxmlpp-%{version}-buildroot
 BuildRequires:	libxml2-devel >= 2.6.1 glibmm2.4-devel >= 2.4.0
