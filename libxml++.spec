@@ -1,5 +1,5 @@
-%define version 2.26.1
-%define release %mkrel 2
+%define version 2.30.0
+%define release %mkrel 1
 
 %define major 	2
 %define api_version 2.6
@@ -51,16 +51,9 @@ applications which will use libraries from %name.
 %configure2_5x
 %make
 
-### Build doc
-pushd docs/reference
-  perl -pi -e 's/^(HAVE_DOT.*=) YES/$1 NO/' Doxyfile
-  make all
-popd
-
 %install
-rm -rf $RPM_BUILD_ROOT installed-docs
+rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
-mv %buildroot%_datadir/doc/libxml++-2.6/docs installed-docs
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -78,13 +71,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %{libnamedev}
 %defattr(-,root,root)
-%doc AUTHORS ChangeLog NEWS README installed-docs/*
+%doc AUTHORS ChangeLog NEWS README
+%doc %_datadir/doc/%name-%{api_version}/reference
+%_datadir/devhelp/books/%name-%{api_version}/%name-%{api_version}.devhelp2
 %{_includedir}/*
 %dir %_libdir/libxml++-%{api_version}
 %_libdir/libxml++-%{api_version}/include/libxml++config.h
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.so
-%{_libdir}/*.a
 %attr(644,root,root) %{_libdir}/*.la
 
 
