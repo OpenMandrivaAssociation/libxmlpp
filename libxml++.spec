@@ -1,4 +1,4 @@
-%define version 2.34.1
+%define version 2.34.2
 %define release %mkrel 1
 
 %define major 	2
@@ -10,7 +10,7 @@ Name: 		libxml++
 Summary: 	C++ interface for working with XML files
 Version: 	%{version}
 Release: 	%{release}
-Source:		http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.bz2
+Source:		http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
 URL:		http://libxmlplusplus.sf.net/
 License:	LGPLv2+
 Group:		System/Libraries
