@@ -1,5 +1,5 @@
 %define version 2.34.2
-%define release 2
+%define release 3
 
 %define major 	2
 %define api_version 2.6
