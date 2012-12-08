@@ -1,22 +1,20 @@
-%define version 2.34.2
-%define release 3
-
 %define major 	2
-%define api_version 2.6
-%define libname %mklibname xml++ %{api_version} %major
-%define libnamedev %mklibname -d xml++ %{api_version}
+%define api	2.6
+%define libname %mklibname xml++ %{api} %{major}
+%define devname %mklibname -d xml++ %{api}
 
 Name: 		libxml++
 Summary: 	C++ interface for working with XML files
-Version: 	%{version}
-Release: 	%{release}
-Source:		http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
-URL:		http://libxmlplusplus.sf.net/
+Version: 	2.36.0
+Release: 	1
 License:	LGPLv2+
 Group:		System/Libraries
-BuildRoot:	%{_tmppath}/libxmlpp-%{version}-buildroot
-BuildRequires:	libxml2-devel >= 2.6.1 glibmm2.4-devel >= 2.4.0
+URL:		http://libxmlplusplus.sf.net/
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/%{name}/%{name}-%{version}.tar.xz
+
 BuildRequires:	doxygen
+BuildRequires:	pkgconfig(libxml-2.0) >= 2.6.1 
+BuildRequires:	pkgconfig(glibmm-2.4)
 
 %description
 libxml++ is a C++ interface for working with XML files, using libxml
@@ -32,17 +30,17 @@ libxml++ is a C++ interface for working with XML files, using libxml
 (gnome-xml) to parse and write the actual XML files. It has a simple
 but complete API.
 
-%package	-n %{libnamedev}
-Summary:	Headers for developing programs that will use %name
+%package	-n %{devname}
+Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C++
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	%{name}%{api_version}-devel = %{version}-%{release}
+Provides:	%{name}%{api}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
-Obsoletes: %mklibname -d xml++ 2.6 2
+Obsoletes:	%mklibname -d xml++ 2.6 2
 
-%description	-n %{libnamedev}
+%description	-n %{devname}
 This package contains the headers that programmers will need to develop
-applications which will use libraries from %name.
+applications which will use libraries from %{name}.
 
 %prep
 %setup -q
@@ -52,33 +50,19 @@ applications which will use libraries from %name.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 rm -f %{buildroot}%{_libdir}/*.la
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %files -n %{libname}
-%defattr(-,root,root)
-%{_libdir}/libxml++-%{api_version}.so.%{major}*
+%{_libdir}/libxml++-%{api}.so.%{major}*
 
-%files -n %{libnamedev}
-%defattr(-,root,root)
+%files -n %{devname}
 %doc AUTHORS ChangeLog NEWS README
-%doc %_datadir/doc/%name-%{api_version}/reference
-%_datadir/devhelp/books/%name-%{api_version}/%name-%{api_version}.devhelp2
+%doc %{_datadir}/doc/%{name}-%{api}/reference
+%{_datadir}/devhelp/books/%{name}-%{api}/%{name}-%{api}.devhelp2
 %{_includedir}/*
-%dir %_libdir/libxml++-%{api_version}/include
-%_libdir/libxml++-%{api_version}/include/libxml++config.h
+%dir %{_libdir}/libxml++-%{api}/include
+%{_libdir}/libxml++-%{api}/include/libxml++config.h
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.so
-
 
