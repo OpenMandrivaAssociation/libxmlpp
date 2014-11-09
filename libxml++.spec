@@ -1,14 +1,14 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define api	2.6
-%define major 	2
+%define api 2.6
+%define major 2
 %define libname %mklibname xml++ %{api} %{major}
 %define devname %mklibname -d xml++ %{api}
 
-Summary: 	C++ interface for working with XML files
-Name: 		libxml++
-Version: 	2.36.0
-Release: 	8
+Summary:	C++ interface for working with XML files
+Name:		libxml++
+Version:	2.37.2
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://libxmlplusplus.sf.net/
@@ -23,22 +23,22 @@ libxml++ is a C++ interface for working with XML files, using libxml
 (gnome-xml) to parse and write the actual XML files. It has a simple
 but complete API.
 
-%package	-n %{libname}
-Summary: 	C++ interface for working with XML files
+%package -n %{libname}
+Summary:	C++ interface for working with XML files
 Group:		System/Libraries
 
-%description	-n %{libname}
+%description -n %{libname}
 libxml++ is a C++ interface for working with XML files, using libxml
 (gnome-xml) to parse and write the actual XML files. It has a simple
 but complete API.
 
-%package	-n %{devname}
+%package -n %{devname}
 Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C++
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 
-%description	-n %{devname}
+%description -n %{devname}
 This package contains the headers that programmers will need to develop
 applications which will use libraries from %{name}.
 
@@ -46,7 +46,8 @@ applications which will use libraries from %{name}.
 %setup -q
 
 %build
-%configure2_5x
+%configure
+
 %make
 
 %install
@@ -64,4 +65,3 @@ applications which will use libraries from %{name}.
 %{_libdir}/libxml++-%{api}/include/libxml++config.h
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.so
-
