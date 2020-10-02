@@ -60,8 +60,6 @@ applications which will use libraries from %{name}.
 
 %files -n %{devname}
 %doc AUTHORS ChangeLog NEWS README
-%doc %{_datadir}/doc/%{name}-%{api}/reference
-%{_datadir}/devhelp/books/%{name}-%{api}/%{name}-%{api}.devhelp2
 %{_includedir}/*
 %dir %{_libdir}/libxml++-%{api}/include
 %{_libdir}/libxml++-%{api}/include/libxml++config.h
