@@ -7,13 +7,14 @@
 
 Summary:	C++ interface for working with XML files
 Name:		libxml++
-Version:	2.40.1
-Release:	3
+Version:	2.42.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://libxmlplusplus.sf.net/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml++/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:  meson
 BuildRequires:	doxygen
 BuildRequires:	pkgconfig(mm-common-libstdc++) >= 0.9.10
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.6.1 
@@ -47,12 +48,12 @@ applications which will use libraries from %{name}.
 %setup -q
 
 %build
-%configure
+%meson
 
-%make
+%meson_build
 
 %install
-%makeinstall_std
+%meson_install
 
 %files -n %{libname}
 %{_libdir}/libxml++-%{api}.so.%{major}*
