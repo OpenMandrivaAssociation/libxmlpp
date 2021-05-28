@@ -7,7 +7,7 @@
 
 Summary:	C++ interface for working with XML files
 Name:		libxml++
-Version:	2.42.0
+Version:	2.42.1
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
