@@ -8,7 +8,7 @@
 Summary:	C++ interface for working with XML files
 Name:		libxml++
 Version:	2.42.1
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://libxmlplusplus.sf.net/
@@ -45,7 +45,7 @@ This package contains the headers that programmers will need to develop
 applications which will use libraries from %{name}.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
 %meson
