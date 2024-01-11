@@ -3,13 +3,13 @@
 %define api 2.6
 %define major 2
 %define libname %mklibname xml++
-%define oldlibname %mklibname xml++ 2.0 2
+%define oldlibname %mklibname xml++ 2.6 2
 %define devname %mklibname -d xml++ %{api}
 
 Summary:	C++ interface for working with XML files
 Name:		libxml++
 Version:	2.42.3
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://libxmlplusplus.sf.net/
