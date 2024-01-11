@@ -61,7 +61,7 @@ applications which will use libraries from %{name}.
 %{_libdir}/libxml++-%{api}.so.%{major}*
 
 %files -n %{devname}
-%doc AUTHORS ChangeLog NEWS README
+%doc ChangeLog NEWS README*
 %{_includedir}/*
 %dir %{_libdir}/libxml++-%{api}/include
 %{_libdir}/libxml++-%{api}/include/libxml++config.h
