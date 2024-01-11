@@ -2,17 +2,18 @@
 
 %define api 2.6
 %define major 2
-%define libname %mklibname xml++ %{api} %{major}
+%define libname %mklibname xml++
+%define oldlibname %mklibname xml++ 2.0 2
 %define devname %mklibname -d xml++ %{api}
 
 Summary:	C++ interface for working with XML files
 Name:		libxml++
-Version:	2.42.2
-Release:	2
+Version:	2.42.3
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://libxmlplusplus.sf.net/
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/libxml++/%{url_ver}/%{name}-%{version}.tar.xz
+Url:		https://libxmlplusplus.sf.net/
+Source0:	https://ftp.gnome.org/pub/GNOME/sources/libxml++/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:  meson
 BuildRequires:	doxygen
@@ -28,6 +29,7 @@ but complete API.
 %package -n %{libname}
 Summary:	C++ interface for working with XML files
 Group:		System/Libraries
+%rename %{oldlibname}
 
 %description -n %{libname}
 libxml++ is a C++ interface for working with XML files, using libxml
