@@ -1,15 +1,15 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define api 2.6
-%define major 2
+%define api 5.0
+%define major 1
 %define libname %mklibname xml++
 %define oldlibname %mklibname xml++ 2.6 2
 %define devname %mklibname -d xml++ %{api}
 
 Summary:	C++ interface for working with XML files
 Name:		libxml++
-Version:	2.42.3
-Release:	4
+Version:	5.4.0
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://libxmlplusplus.sf.net/
@@ -41,6 +41,7 @@ Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C++
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
+%rename %{mklibname -d xml++ 2.6}
 
 %description -n %{devname}
 This package contains the headers that programmers will need to develop
